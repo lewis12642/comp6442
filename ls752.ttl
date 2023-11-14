@@ -1,0 +1,332 @@
+########################################
+######
+####  Lewis Sawyer (ls752)
+####  COMP6422 Assignment 1
+######
+########################################
+
+########################
+## Part 1a: Domain description
+########################
+# My domain: the 'Mamma Mia' musical film - a graph detailing the *main* characters, who they are related to, and songs that they sing. Note: For some chatacters, their last name is not known. Characters are referred to by their first name as most last names are not disclosd in the film.
+# Basic Storyline: Sophie, Donna's daughter, is getting married and invites three of her possible fathers to give her away, with the real motive of finding out who her real father is. By the end of the film, she is happy having three fathers and does not want to know.
+
+# List of main characters, who plays them and their relationships:
+# Sophie (AMANDA SEYFRIED) - a girl attempting to seek out her true father out of three possible ex-partners of her mother by inviting them to the wedding of her and her fiancé, Sky.
+# Sky - (DOMINIC COOPER) Sophie's fiancé.
+# Donna (MERYL STREEP) - mother of Sophie, member of the 'Donna and the Dynamos' girl group in the 1970s.
+# Tanya (CHRISTINE BARANSKI) - Donna's long-time friend, member of 'Donna and the Dynamos' girl group in the 1970s.
+# Rosie (JULIE WALTERS) - Donna's long-time friend, member of 'Donna and the Dynamos' girl group in the 1970s.
+# Sam (PIERCE BROSNAN) - one of Donna's ex-partners from the 1970s, potential father of Sophie. Is from the USA.
+# Harry (COLIN FIRTH) - one of Donna's ex-partners from the 1970s, potential father of Sophie. Is from the UK.
+# Bill (STELAN SKARSGÅRD) - one of Donna's ex-partners from the 1970s, potential father of Sophie. Is from Sweden.
+# Lisa (RACHEL MCDOWALL) - is a friend and bridesmaid of Sophie.
+# Ali (ASHLEY LILLEY) - is a friend and bridesmaid of Sophie.
+# Pepper (PHILLIP MICHAEL) - flirtatious bartender, attempts to pursue Tanya, who is not interested.
+
+# Musical numbers:
+# Honey, Honey - Sophie, Ali, Lisa
+# Money, Money, Money - Donna, Rosie, Tanya
+# Mamma Mia - Donna
+# Dancing Queen - Donna, Rosie, Tanya
+# Our Last Summer - Harry, Sam, Bill, Sophie, Donna
+# Lay All Your Love on Me - Sky, Sophie
+# Super Trouper - Donna, Rosie, Tanya
+# Gimme! Gimme! Gimme! (A Man After Midnight) - Sophie, Ali, Lisa
+# Voulez-Vouz - Every character.
+# SOS - Sam, Donna
+# Does Your Mother Know - Tanya, Pepper.
+# Slipping Through My Fingers - Donna, Sophie
+# The Winner Takes It All - Donna
+# When All Is Said and Done - Sam, Donna
+# Take a Chance on Me - Rosie, Bill, Harry, Pepper, Tanya
+# I Have a Dream - Sophie
+
+########################
+## Part 1b: Prefix/namespace declaraion
+########################
+
+#declare base
+BASE <https://mamma-mia.com/>
+#declare prefixes - RDF, RDFS and XML schemas
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://w3.org/2001/XMLSchema#>
+PREFIX mm: <https://mamma-mia.com/rdfsOntology#>
+PREFIX country: <https://countries.org/>
+
+########################
+## Part 1c: Vocabulary (classes and properties)
+########################
+
+#let's make an ontology to define our vocabulary
+
+#make classes of subjects
+mm:character rdf:type rdfs:Class .
+mm:song rdf:type rdfs:Class .
+mm:actor rdf:type rdfs:Class .
+mm:band rdf:type rdfs:Class .
+country:location rdf:type rdfs:Class .
+mm:event rdf:type rdfs:Class .
+
+#define relationships (properties)
+mm:sings rdf:type rdf:Property.
+mm:parentOf rdf:type rdf:Property .
+mm:motherOf rdf:type rdf:Property .
+mm:potentialFatherOf rdf:type rdf:Property .
+mm:invitedTo rdf:type rdf:Property .
+mm:friendOf rdf:type rdf:Property .
+mm:memberOf rdf:type rdf:Property .
+mm:fianceOf rdf:type rdf:Property .
+mm:bridesmaidOf rdf:type rdf:Property .
+mm:isFrom rdf:type rdf:Property .
+mm:knows rdf:type rdf:Property .
+mm:playedBy rdf:type rdf:Property .
+
+mm:bride rdf:type rdf:Property .
+mm:groom rdf:type rdf:Property .
+mm:weddingOf rdf:type rdf:Property .
+
+mm:flirtsWith rdf:type rdf:Property .
+
+########################
+## Part 1d: Domain Knowledge (3 RDFS axioms of different subClassOf, subPropertyOf, domain, range)
+########################
+
+#a a character sings a song
+mm:sings rdfs:domain mm:character ;
+         rdfs:range mm:song .
+
+#mother and potential father of are subproperties of parent of
+mm:motherOf rdfs:subPropertyOf mm:parentOf .
+mm:potentialFatherOf rdfs:subPropertyOf mm:parentOf .
+
+#a character is a parent of a character
+mm:parentOf rdfs:domain mm:character ;
+            rdfs:range mm:character ;
+            rdfs:subPropertyOf mm:knows .
+
+#a person is invited to an event
+mm:invitedTo rdfs:domain mm:character ;
+             rdfs:range mm:event .
+
+#a character is a friend of another character
+mm:friendOf rdfs:domain mm:character ;
+            rdfs:range mm:character ;
+            rdfs:subPropertyOf mm:knows .
+
+#a character is a member of a band
+mm:memberOf rdfs:domain mm:character;
+            rdfs:range mm:band .
+
+#a character is a fiancee of another character, subclass of knows
+mm:fianceOf rdfs:domain mm:character;
+            rdfs:range mm:character ;
+            rdfs:subPropertyOf mm:knows .
+
+#a character is a bridesmaid of a character, subclass of knows
+mm:bridesmaidOf rdfs:domain mm:character;
+                rdfs:range mm:character ;
+                rdfs:subPropertyOf mm:knows .
+
+#a character is from a location
+mm:isFrom rdfs:domain mm:character ;
+          rdfs:range country:location .
+
+#a character knows another character
+mm:knows rdfs:domain mm:character ;
+         rdfs:range mm:character .
+
+#a character is played by an actor
+mm:playedBy rdfs:domain mm:character ;
+            rdfs:range mm:actor .
+
+#a character flirts with a character
+mm:flirtsWith rdfs:domain mm:character;
+              rdfs:range mm:character;
+              rdfs:subPropertyOf mm:knows .
+
+########################
+## Part 13: 20 triples, including one blank node that appears in more than one triple, and links between individual resources and literal resources
+########################
+
+# Sophie (AMANDA SEYFRIED) - a girl attempting to seek out her true father out of three possible ex-partners of her mother by inviting them to the wedding of her and her fiancé, Sky.
+<Sophie> rdfs:label "Sophie" ;
+         mm:playedBy "Amanda Seyfried" ;
+         mm:isFrom country:Kalokari . #Kalokari is a (fictional) island in the Aegean sea
+# Sky - (DOMINIC COOPER) Sophie's fiancé.
+<Sky> rdfs:label "Sky" ;
+      mm:playedBy "Dominic Cooper" ;
+      mm:isFrom country:Kalokari ;
+      mm:fianceOf <Sophie> .
+# Donna (MERYL STREEP) - mother of Sophie, member of the 'Donna and the Dynamos' girl group in the 1970s.
+<Donna> rdfs:label "Donna" ;
+        mm:playedBy "Meryl Streep" ;
+        mm:parentOf <Sophie> ;
+        mm:isFrom country:Kalokari ;
+        mm:memberOf <Donna_and_the_Dynamos> ;
+        mm:invitedTo <The_Wedding> .
+# Tanya (CHRISTINE BARANSKI) - Donna's long-time friend, member of 'Donna and the Dynamos' girl group in the 1970s.
+<Tanya> rdfs:label "Tanya" ;
+        mm:playedBy "Christine Baranski" ;
+        mm:isFrom country:United_States_of_America ;
+        mm:memberOf <Donna_and_the_Dynamos> ;
+        mm:friendOf <Donna> ;
+        mm:invitedTo <The_Wedding> ;
+        mm:knows <Pepper> .
+# Rosie (JULIE WALTERS) - Donna's long-time friend, member of 'Donna and the Dynamos' girl group in the 1970s.
+<Rosie> rdfs:label "Rosie" ;
+        mm:playedBy "Julie Walters" ;
+        mm:isFrom country:United_Kingdom ;
+        mm:memberOf <Donna_and_the_Dynamos> ;
+        mm:friendOf <Donna> ;
+        mm:invitedTo <The_Wedding> ;
+        mm:knows <Pepper> .
+# Sam (PIERCE BROSNAN) - one of Donna's ex-partners from the 1970s, potential father of Sophie. Is from the USA.
+<Sam> rdfs:label "Sam" ;
+      mm:playedBy "Pierce Brosnan" ;
+      mm:isFrom country:United_States_of_America ;
+      mm:potentialFatherOf <Sophie> ;
+      mm:invitedTo <The_Wedding> .
+
+# Harry (COLIN FIRTH) - one of Donna's ex-partners from the 1970s, potential father of Sophie. Is from the UK.
+<Harry> rdfs:label "Harry" ;
+        mm:playedBy "Colin Firth" ;
+        mm:isFrom country:United_Kingdom ;
+        mm:potentialFatherOf <Sophie> ;
+        mm:invitedTo <The_Wedding> .
+# Bill (STELAN SKARSGÅRD) - one of Donna's ex-partners from the 1970s, potential father of Sophie. Is from Sweden.
+<Bill> rdfs:label "Bill" ;
+       mm:playedBy "Stellan Skarsgård" ;
+       mm:isFrom country:Sweden ;
+       mm:potentialFatherOf <Sophie> ;
+       mm:invitedTo <The_Wedding> .
+# Lisa (RACHEL MCDOWALL) - is a friend and bridesmaid of Sophie.
+<Lisa> rdfs:label "Lisa" ;
+       mm:playedBy "Rachel McDowall" ;
+       mm:isFrom country:United_Kingdom ;
+       mm:invitedTo <The_Wedding> ;
+       mm:bridesmaidOf <Sophie> .
+# Ali (ASHLEY LILLEY) - is a friend and bridesmaid of Sophie.
+<Ali> rdfs:label "Ali" ;
+      mm:playedBy "Ashley Lilley" ;
+      mm:isFrom country:United_Kingdom ;
+      mm:invitedTo <The_Wedding> ;
+      mm:bridesmaidOf <Sophie> .
+# Pepper (PHILLIP MICHAEL) - flirtatious bartender, attempts to pursue Tanya, who is not interested.
+<Pepper> rdfs:label "Pepper" ;
+         mm:playedBy "Phillip Michael" ;
+         mm:isFrom country:Kalokari ;
+         mm:invitedTo <The_Wedding> ;
+         mm:flirtsWith <Tanya> .
+
+#define wedding as blank node of 2 people, where the blank node is used in more than one triple
+<The_Wedding> mm:weddingOf _:b .
+_:b mm:bride <Sophie> .
+_:b mm:groom <Sky> .
+<The_Wedding> rdfs:label "The Wedding of Sophie and Sky"@en .
+
+#define characters that sing songs
+# Musical numbers:
+# Honey, Honey - Sophie, Ali, Lisa
+<Honey_Honey> mm:sungBy <Sophie>,
+                        <Ali>,
+                        <Lisa> ;
+              rdfs:label "Honey, Honey" .
+
+# Money, Money, Money - Donna, Rosie, Tanya
+<Money_Money_Money> mm:sungBy <Donna> ,
+                              <Rosie> ,
+                              <Tanya> ;
+                    rdfs:label "Money, Money, Money" .
+
+# Mamma Mia - Donna
+<Mamma_Mia> mm:sungBy <Donna> ;
+            rdfs:label "Mamma Mia" .
+
+# Dancing Queen - Donna, Rosie, Tanya
+<Dancing_Queen> mm:sungBy <Donna>,
+                        <Rosie>,
+                        <Tanya> ;
+                rdfs:label "Dancing Queen" .
+
+# Our Last Summer - Harry, Sam, Bill, Sophie, Donna
+<Our_Last_Summer> mm:sungBy <Harry> ,
+                        <Sam> ,
+                        <Bill> ,
+                        <Sophie> ,
+                        <Donna> ;
+                  rdfs:label "Our Last Summer" .
+
+# Lay All Your Love on Me - Sky, Sophie
+<Lay_All_Your_Love_On_Me> mm:sungBy <Sky> ,
+                                   <Sophie> ;
+                          rdfs:label "Lay All Your Love on Me" .
+
+# Super Trouper - Donna, Rosie, Tanya
+<Super_Trouper> mm:sungBy <Donna>,
+                          <Rosie>,
+                          <Tanya> ;
+                rdfs:label "Super Trouper" .
+
+# Gimme! Gimme! Gimme! (A Man After Midnight) - Sophie, Ali, Lisa
+<Gimme_Gimme_Gimme> mm:sungBy <Sophie>,
+                          <Ali>,
+                          <Lisa> ;
+                rdfs:label "Gimme! Gimme! Gimme! (A Man After Midnight)" .
+
+
+# Voulez-Vouz - Every character.
+<Voulez_Vous> mm:sungBy <Sophie> ,
+                        <Sky> ,
+                        <Donna> ,
+                        <Tanya> ,
+                        <Rosie> ,
+                        <Sam> ,
+                        <Harry> ,
+                        <Bill> ,
+                        <Lisa> ,
+                        <Ali> ,
+                        <Pepper> ;
+                rdfs:label "Voulez Vous" .
+
+# SOS - Sam, Donna
+<SOS> mm:sungBy <Sam> ,
+                <Donna> ;
+      rdfs:label "SOS" .
+
+
+# Does Your Mother Know - Tanya, Pepper.
+<Does_Your_Mother_Know> mm:sungBy <Tanya> ,
+                                  <Pepper> ;
+                        rdfs:label "Does Your Mother Know" .
+        
+
+# Slipping Through My Fingers - Donna, Sophie
+<Slipping_Through_My_Fingers> mm:sungBy <Donna>,
+                                        <Sophie> ;
+                              rdfs:label "Slipping Through My Fingers" .
+
+# The Winner Takes It All - Donna
+<The_Winner_Takes_It_All> mm:sungBy <Donna>;
+                          rdfs:label "The Winner Takes It All" .
+
+# When All Is Said and Done - Sam, Donna
+<When_All_Is_Said_And_Done> mm:sungBy <Sam>,
+                                        <Donna> ;
+                              rdfs:label "When All Is Said and Done" .
+
+# Take a Chance on Me - Rosie, Bill, Harry, Pepper, Tanya
+<Take_a_Chance_on_Me> mm:sungBy <Rosie> ,
+                                <Bill> ,
+                                <Harry> ,
+                                <Pepper> ,
+                                <Tanya> ;
+                            rdfs:label "Take a Chance on Me" .
+# I Have a Dream - Sophie
+<I_Have_a_Dream> mm:sungBy <Sophie> ;
+                 rdfs:label "I Have a Dream" .
+
+
+
+
