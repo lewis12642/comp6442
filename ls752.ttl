@@ -9,20 +9,20 @@
 ## Part 1a: Domain description
 ########################
 # My domain: the 'Mamma Mia' musical film - a graph detailing the *main* characters, who they are related to, and songs that they sing. Note: For some chatacters, their last name is not known. Characters are referred to by their first name as most last names are not disclosd in the film.
-# Basic Storyline: Sophie, Donna's daughter, is getting married and invites three of her possible fathers to give her away, with the real motive of finding out who her real father is. By the end of the film, she is happy having three fathers and does not want to know.
+# Basic Storyline: Sophie, Donna's daughter, is getting married on her home island Kalokari, and invites three of her possible fathers to give her away, with the real motive of finding out who her real father is. By the end of the film, she is happy having three fathers and does not want to know.
 
 # List of main characters, who plays them and their relationships:
-# Sophie (AMANDA SEYFRIED) - a girl attempting to seek out her true father out of three possible ex-partners of her mother by inviting them to the wedding of her and her fiancé, Sky.
-# Sky - (DOMINIC COOPER) Sophie's fiancé.
-# Donna (MERYL STREEP) - mother of Sophie, member of the 'Donna and the Dynamos' girl group in the 1970s.
-# Tanya (CHRISTINE BARANSKI) - Donna's long-time friend, member of 'Donna and the Dynamos' girl group in the 1970s.
-# Rosie (JULIE WALTERS) - Donna's long-time friend, member of 'Donna and the Dynamos' girl group in the 1970s.
+# Sophie (AMANDA SEYFRIED) - a girl attempting to seek out her true father out of three possible ex-partners of her mother by inviting them to the wedding of her and her fiancé, Sky. From the island, Kalokari.
+# Sky - (DOMINIC COOPER) Sophie's fiancé. From Kalokari.
+# Donna (MERYL STREEP) - mother of Sophie, member of the 'Donna and the Dynamos' girl group in the 1970s. From Kalokari.
+# Tanya (CHRISTINE BARANSKI) - Donna's long-time friend, member of 'Donna and the Dynamos' girl group in the 1970s. Unknown where she is from.
+# Rosie (JULIE WALTERS) - Donna's long-time friend, member of 'Donna and the Dynamos' girl group in the 1970s. Unknown where she is from.
 # Sam (PIERCE BROSNAN) - one of Donna's ex-partners from the 1970s, potential father of Sophie. Is from the USA.
 # Harry (COLIN FIRTH) - one of Donna's ex-partners from the 1970s, potential father of Sophie. Is from the UK.
 # Bill (STELAN SKARSGÅRD) - one of Donna's ex-partners from the 1970s, potential father of Sophie. Is from Sweden.
-# Lisa (RACHEL MCDOWALL) - is a friend and bridesmaid of Sophie.
-# Ali (ASHLEY LILLEY) - is a friend and bridesmaid of Sophie.
-# Pepper (PHILLIP MICHAEL) - flirtatious bartender, attempts to pursue Tanya, who is not interested.
+# Lisa (RACHEL MCDOWALL) - is a friend and bridesmaid of Sophie. Unknown where she is from.
+# Ali (ASHLEY LILLEY) - is a friend and bridesmaid of Sophie. Unknown where she is from.
+# Pepper (PHILLIP MICHAEL) - flirtatious bartender, attempts to pursue Tanya, who is not interested. From Kalokari.
 
 # Musical numbers:
 # Honey, Honey - Sophie, Ali, Lisa
@@ -150,34 +150,32 @@ mm:flirtsWith rdfs:domain mm:character;
 ## Part 13: 20 triples, including one blank node that appears in more than one triple, and links between individual resources and literal resources
 ########################
 
-# Sophie (AMANDA SEYFRIED) - a girl attempting to seek out her true father out of three possible ex-partners of her mother by inviting them to the wedding of her and her fiancé, Sky.
+# Sophie (AMANDA SEYFRIED) - a girl attempting to seek out her true father out of three possible ex-partners of her mother by inviting them to the wedding of her and her fiancé, Sky. From Kalokari.
 <Sophie> rdfs:label "Sophie" ;
          mm:playedBy "Amanda Seyfried" ;
          mm:isFrom country:Kalokari . #Kalokari is a (fictional) island in the Aegean sea
-# Sky - (DOMINIC COOPER) Sophie's fiancé.
+# Sky - (DOMINIC COOPER) Sophie's fiancé. From Kalokari.
 <Sky> rdfs:label "Sky" ;
       mm:playedBy "Dominic Cooper" ;
       mm:isFrom country:Kalokari ;
       mm:fianceOf <Sophie> .
-# Donna (MERYL STREEP) - mother of Sophie, member of the 'Donna and the Dynamos' girl group in the 1970s.
+# Donna (MERYL STREEP) - mother of Sophie, member of the 'Donna and the Dynamos' girl group in the 1970s. From Kalokari.
 <Donna> rdfs:label "Donna" ;
         mm:playedBy "Meryl Streep" ;
         mm:parentOf <Sophie> ;
         mm:isFrom country:Kalokari ;
         mm:memberOf <Donna_and_the_Dynamos> ;
         mm:invitedTo <The_Wedding> .
-# Tanya (CHRISTINE BARANSKI) - Donna's long-time friend, member of 'Donna and the Dynamos' girl group in the 1970s.
+# Tanya (CHRISTINE BARANSKI) - Donna's long-time friend, member of 'Donna and the Dynamos' girl group in the 1970s. Unknown where she is from.
 <Tanya> rdfs:label "Tanya" ;
         mm:playedBy "Christine Baranski" ;
-        mm:isFrom country:United_States_of_America ;
         mm:memberOf <Donna_and_the_Dynamos> ;
         mm:friendOf <Donna> ;
         mm:invitedTo <The_Wedding> ;
         mm:knows <Pepper> .
-# Rosie (JULIE WALTERS) - Donna's long-time friend, member of 'Donna and the Dynamos' girl group in the 1970s.
+# Rosie (JULIE WALTERS) - Donna's long-time friend, member of 'Donna and the Dynamos' girl group in the 1970s. Unknown where she is from.
 <Rosie> rdfs:label "Rosie" ;
         mm:playedBy "Julie Walters" ;
-        mm:isFrom country:United_Kingdom ;
         mm:memberOf <Donna_and_the_Dynamos> ;
         mm:friendOf <Donna> ;
         mm:invitedTo <The_Wedding> ;
@@ -201,19 +199,17 @@ mm:flirtsWith rdfs:domain mm:character;
        mm:isFrom country:Sweden ;
        mm:potentialFatherOf <Sophie> ;
        mm:invitedTo <The_Wedding> .
-# Lisa (RACHEL MCDOWALL) - is a friend and bridesmaid of Sophie.
+# Lisa (RACHEL MCDOWALL) - is a friend and bridesmaid of Sophie. Unknown where she is from.
 <Lisa> rdfs:label "Lisa" ;
        mm:playedBy "Rachel McDowall" ;
-       mm:isFrom country:United_Kingdom ;
        mm:invitedTo <The_Wedding> ;
        mm:bridesmaidOf <Sophie> .
-# Ali (ASHLEY LILLEY) - is a friend and bridesmaid of Sophie.
+# Ali (ASHLEY LILLEY) - is a friend and bridesmaid of Sophie. Unknown where she is from.
 <Ali> rdfs:label "Ali" ;
       mm:playedBy "Ashley Lilley" ;
-      mm:isFrom country:United_Kingdom ;
       mm:invitedTo <The_Wedding> ;
       mm:bridesmaidOf <Sophie> .
-# Pepper (PHILLIP MICHAEL) - flirtatious bartender, attempts to pursue Tanya, who is not interested.
+# Pepper (PHILLIP MICHAEL) - flirtatious bartender, attempts to pursue Tanya, who is not interested. From Kalokari.
 <Pepper> rdfs:label "Pepper" ;
          mm:playedBy "Phillip Michael" ;
          mm:isFrom country:Kalokari ;
