@@ -147,7 +147,7 @@ mm:flirtsWith rdfs:domain mm:character;
               rdfs:subPropertyOf mm:knows .
 
 ########################
-## Part 13: 20 triples, including one blank node that appears in more than one triple, and links between individual resources and literal resources
+## Part 1e: 20 triples, including one blank node that appears in more than one triple, and links between individual resources and literal resources
 ########################
 
 # Sophie (AMANDA SEYFRIED) - a girl attempting to seek out her true father out of three possible ex-partners of her mother by inviting them to the wedding of her and her fiancé, Sky. From Kalokari.
