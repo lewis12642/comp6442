@@ -8,8 +8,8 @@
 ########################
 ## Part 1a: Domain description
 ########################
-# My domain: the 'Mamma Mia' musical film - a graph detailing the *main* characters, who they are related to, and songs that they sing. Note: For some chatacters, their last name is not known. Characters are referred to by their first name as most last names are not disclosd in the film.
-# Basic Storyline: Sophie, Donna's daughter, is getting married on her home island Kalokari, and invites three of her possible fathers to give her away, with the real motive of finding out who her real father is. By the end of the film, she is happy having three fathers and does not want to know.
+# My domain: the 'Mamma Mia' musical film - a graph detailing the *main* characters, who they are related to, the wedding and songs that they sing. 
+# Basic Storyline: Sophie, Donna's daughter, is getting married on her home island Kalokari, and invites three of her possible fathers (from around the world) to give her away, with the real motive of finding out who her real father is. By the end of the film, she is happy having three fathers and does not want to know.
 
 # List of main characters, who plays them and their relationships:
 # Sophie (AMANDA SEYFRIED) - a girl attempting to seek out her true father out of three possible ex-partners of her mother by inviting them to the wedding of her and her fiancé, Sky. From the island, Kalokari.
@@ -220,7 +220,7 @@ mm:flirtsWith rdfs:domain mm:character;
 <The_Wedding> mm:weddingOf _:b .
 _:b mm:bride <Sophie> .
 _:b mm:groom <Sky> .
-<The_Wedding> rdfs:label "The Wedding of Sophie and Sky"@en .
+<The_Wedding> rdfs:label "The Wedding of Sophie and Sky"@en . #this is tagged as English as it is a sentence and could change, unlike the names and song names used in other RDF literals here, where they will always be English.
 
 #define characters that sing songs
 # Musical numbers:
