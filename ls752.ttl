@@ -48,7 +48,7 @@
 
 #declare base
 BASE <https://mamma-mia.com/>
-#declare prefixes - RDF, RDFS and XML schemas
+#declare prefixes - RDF, RDFS and XML schemas and custom Country and Mamma Mia prefixes
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://w3.org/2001/XMLSchema#>
